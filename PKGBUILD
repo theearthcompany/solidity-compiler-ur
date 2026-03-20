@@ -50,7 +50,6 @@ if [[ ! -v "_git" ]]; then
 fi
 if [[ ! -v "_git_service" ]]; then
   _git_service="gitlab"
-  _git_service="github"
 fi
 if [[ ! -v "_git_http" ]]; then
   _git_http="${_git_service}"
@@ -91,7 +90,7 @@ if [[ "${_docs}" == "true" ]]; then
 fi
 pkgver="0.0.0.0.0.0.0.0.0.1"
 _commit="f4c70bf861644638e08bd331c41c9183c0b13edf"
-pkgrel=7
+pkgrel=8
 _pkgdesc=(
   "Solidity compiler supporting multiple backends."
 )
@@ -182,8 +181,17 @@ _tarfile="${_tarname}.${_archive_format}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${pkgname}"
 fi
-_sum="31b3fb6f8a76a6fcd6f8b6c207304eb058353b6cd7ffdef0ba93884e3f6f4f67"
-_sig_sum="68f8ceae8accccce32b37577a0af1f4668b5299ccfc803487d0b99d98fdb55c1"
+_github_sum="31b3fb6f8a76a6fcd6f8b6c207304eb058353b6cd7ffdef0ba93884e3f6f4f67"
+_github_sig_sum="27f614d5a82c587f8f87d39966d8bb1b0aa1f1b56fba8c0cbcae9fc87ddde7da"
+_gitlab_sum="31b3fb6f8a76a6fcd6f8b6c207304eb058353b6cd7ffdef0ba93884e3f6f4f67"
+_gitlab_sig_sum="68f8ceae8accccce32b37577a0af1f4668b5299ccfc803487d0b99d98fdb55c1"
+if [[ "${_git_service}" == "github" ]]; then
+  _sum="${_github_sum}"
+  _sig_sum="${_github_sig_sum}"
+elif [[ "${_git_service}" == "gitlab" ]]; then
+  _sum="${_gitlab_sum}"
+  _sig_sum="${_gitlab_sig_sum}"
+fi
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 # Gnosis
